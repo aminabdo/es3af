@@ -37,6 +37,22 @@ class MainActivity : AppCompatActivity() {
 
     private var mSocket: Socket? = null
 
+    val onNewMessage = Emitter.Listener { args ->
+        this.runOnUiThread(Runnable {
+            val data = args[0] as JSONObject
+            val username: String
+            val message: String
+            try {
+                username = data.getString("username")
+                message = data.getString("message")
+            } catch (e: JSONException) {
+                return@Runnable
+            }
+
+            // add the message to view
+            addMessage(username, message)
+        })
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -62,22 +78,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        val onNewMessage = Emitter.Listener { args ->
-            this.runOnUiThread(Runnable {
-                val data = args[0] as JSONObject
-                val username: String
-                val message: String
-                try {
-                    username = data.getString("username")
-                    message = data.getString("message")
-                } catch (e: JSONException) {
-                    return@Runnable
-                }
 
-                // add the message to view
-                addMessage(username, message)
-            })
-        }
 
         mSocket?.on("new message", onNewMessage);
         mSocket?.connect();
@@ -199,5 +200,12 @@ class MainActivity : AppCompatActivity() {
             return
         }
         mSocket!!.emit("new message", message)
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mSocket!!.disconnect()
+        mSocket!!.off("new message", onNewMessage)
     }
 }
