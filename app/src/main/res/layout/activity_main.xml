@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:foregroundGravity="center"
+        tools:context=".MainActivity">
+
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/btn_user"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="0.5"
+                android:text="سيارة اسعاف"
+                android:layout_margin="20dp"
+                android:onClick="onCheck_user"></Button>
+
+            <Button
+                android:id="@+id/btn_car"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="0.5"
+                android:text="مريض"
+                android:layout_margin="20dp"
+                android:onClick="onCheck_car"></Button>
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/linear"
+            android:layout_marginTop="20dp"
+            android:text="معلومات المستخدم"
+            android:textSize="20dp"
+            android:onClick="on1" />
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="بلاغ جديد"
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/btn1"
+            android:onClick="on2" />
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="ارقام الطوارئ"
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/btn2"
+            android:onClick="on3" />
+
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="الاسعافات الاوليه"
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/btn3"
+            android:onClick="on4" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/ic_add2">
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
